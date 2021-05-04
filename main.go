@@ -35,16 +35,16 @@ func main() {
 	}
 
 	// HACK: get the first and the third term.
-	courses1, err := fy.GetCourseList(terms[0])
+	courses, err := fy.GetCourseList(terms[0])
 	if err != nil {
 		log.Fatal("Failed to get courses list: %v", err)
 	}
-	courses2, err := fy.GetCourseList(terms[2])
-	if err != nil {
-		log.Fatal("Failed to get courses list: %v", err)
-	}
-
-	courses := append(courses1, courses2...)
+	//courses2, err := fy.GetCourseList(terms[2])
+	//if err != nil {
+	//	log.Fatal("Failed to get courses list: %v", err)
+	//}
+	//
+	//courses := append(courses1, courses2...)
 
 	for _, course := range courses {
 		homeworks, err := fy.GetHomeworks(course)
@@ -62,7 +62,7 @@ func main() {
 			title := fmt.Sprintf("%s 作业即将截止", course.Name)
 			if timeToEnd < 0 {
 				content := fmt.Sprintf("%s - %s 需要提交，无截止日期。", course.Name, hw.Title)
-				sendAlert(title, content)
+				//sendAlert(title, content)
 				log.Trace(content)
 			} else if timeToEnd < 1*time.Hour { // < 1
 				content := fmt.Sprintf("%s - %s 还有不到 1 小时截止提交。【 %s 】", course.Name, hw.Title, hw.End.Format("2006-01-02 15:04:05"))

@@ -25,14 +25,14 @@ func (f *Fanya) GetAllTerm() ([]*term, error) {
 	if err != nil {
 		return nil, err
 	}
-	termSegment := regexp.MustCompile(`<a onclick="research\(this\);" begin="(.*)" end="(.*)" href="javascript:void\(0\);">`).FindAllStringSubmatch(resp.String(), -1)
+	termSegment := regexp.MustCompile(`<a onclick="research\(this\);" (.*)? begin="(.*)" end="(.*)" href="javascript:void\(0\);">`).FindAllStringSubmatch(resp.String(), -1)
 	if len(termSegment) == 0 || len(termSegment[0]) < 3 {
 		return nil, errors.New("获取泛雅学期信息失败")
 	}
 
 	terms := make([]*term, len(termSegment))
 	for i := range terms {
-		terms[i] = NewTerm(termSegment[i][1], termSegment[i][2])
+		terms[i] = NewTerm(termSegment[i][2], termSegment[i][3])
 	}
 	return terms, nil
 }
