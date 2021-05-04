@@ -18,6 +18,14 @@ func init() {
 }
 
 func main() {
+	defer log.Stop()
+	for {
+		checkCourse()
+		time.Sleep(1 * time.Hour)
+	}
+}
+
+func checkCourse() {
 	cas, err := cas.NewSession(os.Getenv("HDU_NO"), os.Getenv("HDU_PASSWORD"))
 	if err != nil {
 		log.Fatal("Failed to login: %v", err)
@@ -84,7 +92,6 @@ func main() {
 		}
 	}
 
-	log.Stop()
 }
 
 // sendAlert 发送推送，可以接入 Bark 等服务
