@@ -101,7 +101,7 @@ func (f *Fanya) GetHomeworks(course Courses) ([]Homework, error) {
 		case "已过期":
 			homeworks[i].Status = EXPIRED
 		default:
-			homeworks[i].Status = TODO
+
 		}
 	}
 

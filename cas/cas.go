@@ -65,7 +65,7 @@ func (s *Session) Login() error {
 		"_eventId":  []string{"submit"},
 	}
 
-	url := "https://cas.hdu.edu.cn/cas/login"
+	url := "http://cas.hdu.edu.cn/cas/login"
 	resp, err := s.request.Post(url, req.Header{
 		"User-Agent":   userAgent,
 		"Content-Type": "application/x-www-form-urlencoded",
