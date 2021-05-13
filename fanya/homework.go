@@ -92,6 +92,9 @@ func (f *Fanya) GetHomeworks(course Courses) ([]Homework, error) {
 
 	homeworkStatusNodes := htmlquery.Find(nodes, `//*[@id="RightCon"]/div/div/div[2]/ul/li/div[1]/span[3]/strong/text()`)
 	for i, node := range homeworkStatusNodes {
+		if i > len(homeworks)-1 {
+			break
+		}
 		status := strings.TrimSpace(node.Data)
 		switch status {
 		case "待做":
@@ -101,7 +104,7 @@ func (f *Fanya) GetHomeworks(course Courses) ([]Homework, error) {
 		case "已过期":
 			homeworks[i].Status = EXPIRED
 		default:
-
+			homeworks[i].Status = TODO
 		}
 	}
 

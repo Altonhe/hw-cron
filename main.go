@@ -43,16 +43,16 @@ func checkCourse() {
 	}
 
 	// HACK: get the first and the third term.
-	courses, err := fy.GetCourseList(terms[0])
+	courses1, err := fy.GetCourseList(terms[0])
 	if err != nil {
 		log.Fatal("Failed to get courses list: %v", err)
 	}
-	//courses2, err := fy.GetCourseList(terms[2])
-	//if err != nil {
-	//	log.Fatal("Failed to get courses list: %v", err)
-	//}
-	//
-	//courses := append(courses1, courses2...)
+	courses2, err := fy.GetCourseList(terms[1])
+	if err != nil {
+		log.Fatal("Failed to get courses list: %v", err)
+	}
+
+	courses := append(courses1, courses2...)
 
 	for _, course := range courses {
 		homeworks, err := fy.GetHomeworks(course)

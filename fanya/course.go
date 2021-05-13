@@ -62,7 +62,7 @@ func (f *Fanya) GetCourseList(term *term) ([]Courses, error) {
 	for i, node := range courseLinkNodes {
 		for _, attr := range node.Attr {
 			if attr.Key == "href" {
-				courses[i].Link = strings.TrimSpace(attr.Val)
+				courses[i].Link = "https://hdu.fanya.chaoxing.com" + strings.TrimSpace(attr.Val)
 				break
 			}
 		}
