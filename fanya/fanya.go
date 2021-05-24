@@ -59,7 +59,7 @@ func (f *Fanya) LoginCallback(body string) error {
 }
 
 func (f *Fanya) submitForm(body string) (string, error) {
-	urls := regexp.MustCompile(`<form action="(.*)" method="post"`).FindStringSubmatch(body)
+	urls := regexp.MustCompile(`<form action="(.*)".+method="post"`).FindStringSubmatch(body)
 	if len(urls) != 2 {
 		return "", errors.Errorf("Failed to parse request url: %v", urls)
 	}
