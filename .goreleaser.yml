@@ -37,3 +37,4 @@ release:
   github:
     owner: Alton
     name: hw-cron
+  disable: false
