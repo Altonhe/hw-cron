@@ -8,9 +8,10 @@ import (
 	"time"
 
 	"github.com/imroc/req"
+	log "unknwon.dev/clog/v2"
+
 	"github.com/wuhan005/hw-cron/cas"
 	"github.com/wuhan005/hw-cron/fanya"
-	log "unknwon.dev/clog/v2"
 )
 
 func init() {
@@ -86,6 +87,10 @@ func checkCourse() {
 				log.Trace(content)
 			} else if timeToEnd < 24*time.Hour { // < 24
 				content := fmt.Sprintf("%s - %s 还有不到 24 小时截止提交。【 %s 】", course.Name, hw.Title, hw.End.Format("2006-01-02 15:04:05"))
+				sendAlert(title, content)
+				log.Trace(content)
+			} else if timeToEnd < 48*time.Hour { // < 48
+				content := fmt.Sprintf("%s - %s 还有不到 48 小时截止提交。【 %s 】", course.Name, hw.Title, hw.End.Format("2006-01-02 15:04:05"))
 				sendAlert(title, content)
 				log.Trace(content)
 			}
