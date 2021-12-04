@@ -1,0 +1,29 @@
+name: Cron Task
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+
+jobs:
+  build:
+    name: Check Course
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.16
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.16
+
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v1
+
+      - name: Get dependencies
+        run: |
+          go mod tidy
+      - name: Build & Run
+        run: |
+          go build . && ./hw-cron
+        env:
+          HDU_NO: ${{ secrets.HDU_NO }}
+          HDU_PASSWORD: ${{ secrets.HDU_PASSWORD }}
+          ALERT_URL: ${{ secrets.ALERT_URL }}
