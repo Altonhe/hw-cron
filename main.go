@@ -22,6 +22,9 @@ func main() {
 	defer log.Stop()
 	for {
 		checkCourse()
+		if os.Getenv("RUN_ON_CI") != "" {
+			return
+		}
 		time.Sleep(1 * time.Hour)
 	}
 }

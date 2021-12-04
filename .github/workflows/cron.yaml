@@ -28,3 +28,4 @@ jobs:
           HDU_NO: ${{ secrets.HDU_NO }}
           HDU_PASSWORD: ${{ secrets.HDU_PASSWORD }}
           ALERT_URL: ${{ secrets.ALERT_URL }}
+          RUN_ON_CI: 1
